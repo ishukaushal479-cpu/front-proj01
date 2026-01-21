@@ -1,0 +1,145 @@
+
+<!DOCTYPE html
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mood Detector</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+        transition: background 0.6s ease;
+        background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+    }
+
+    .box {
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(12px);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        width: 350px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        color: #333;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    select {
+        width: 80%;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 25px;
+        border-radius: 25px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        background: linear-gradient(to right, #43e97b, #38f9d7);
+        transition: transform 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    .emoji {
+        font-size: 70px;
+        margin-top: 20px;
+        animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+        from { transform: translateY(0); }
+        to { transform: translateY(-10px); }
+    }
+
+    #message {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    function detectMood() {
+        let mood = document.getElementById("mood").value;
+        let emoji = document.getElementById("emoji");
+        let message = document.getElementById("message");
+
+        if (mood === "happy") {
+            document.body.style.background =
+            "linear-gradient(120deg, #f6d365, #fda085)";
+            emoji.innerHTML = "😄";
+            message.innerHTML = "You look happy! Keep smiling 🌟";
+        }
+        else if (mood === "sad") {
+            document.body.style.background =
+            "linear-gradient(120deg, #89f7fe, #66a6ff)";
+            emoji.innerHTML = "😢";
+            message.innerHTML = "It's okay to feel sad. Stay strong 💙";
+        }
+        else if (mood === "angry") {
+            document.body.style.background =
+            "linear-gradient(120deg, #ff758c, #ff7eb3)";
+            emoji.innerHTML = "😡";
+            message.innerHTML = "Take a deep breath. Relax 😌";
+        }
+        else if (mood === "excited") {
+            document.body.style.background =
+            "linear-gradient(120deg, #43e97b, #38f9d7)";
+            emoji.innerHTML = "🤩";
+            message.innerHTML = "Wow! Your excitement is contagious 🎉";
+        }
+        else {
+            emoji.innerHTML = "";
+            message.innerHTML = "Please select your mood";
+        }
+    }
+</script>
+
+</head>
+
+<body>
+
+<div class="box">
+    <h2>😊 Mood Detector</h2>
+    <p>Select your current mood</p>
+
+    <select id="mood">
+        <option value="">-- Choose Mood --</option>
+        <option value="happy">Happy</option>
+        <option value="sad">Sad</option>
+        <option value="angry">Angry</option>
+        <option value="excited">Excited</option>
+    </select>
+
+    <br>
+
+    <button onclick="detectMood()">Detect Mood</button>
+
+    <div class="emoji" id="emoji"></div>
+    <div id="message"></div>
+</div>
+
+</body>
+</html>
